@@ -24,10 +24,12 @@
 
         - name: Get commit hash
           id: get-commit-hash
-          run: echo "::set-output name=commit-hash::$(git rev-parse --short HEAD)"
+          run: echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+#          run: echo "::set-output name=commit-hash::$(git rev-parse --short HEAD)"
         - name: Get timestamp
           id: get-timestamp
-          run: echo "::set-output name=timestamp::$(date +'%Y-%m-%d-%H-%M')"
+          run: echo "TIMESTAMP=$(date +'%Y-%m-%d-%H-%M')" >> $GITHUB_ENV
+#          run: echo "::set-output name=timestamp::$(date +'%Y-%m-%d-%H-%M')"
 
         - name: Build, tag, and push the image to Amazon ECR
           id: build-image
